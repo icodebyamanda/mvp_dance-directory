@@ -26,7 +26,7 @@ con.connect(function(err) {
   //   console.log("Closing...");
   // });
 
-  let sql = "DROP TABLE if exists classes; CREATE TABLE classes (id INT NOT NULL AUTO_INCREMENT, date DATE NOT NULL, time TIME NOT NULL, address varchar(255) NOT NULL, price double NOT NULL, partner BOOLEAN NOT NULL,style INT NOT NULL, instructor INT NOT NULL, PRIMARY KEY (id));";
+  let sql = "DROP TABLE if exists classes; CREATE TABLE classes (id INT NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL, date DATE NOT NULL, time TIME NOT NULL, address varchar(255) NOT NULL, price double NOT NULL, partner BOOLEAN NOT NULL,style INT NOT NULL, instructor INT NOT NULL, PRIMARY KEY (id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation 'classes' was successful!");

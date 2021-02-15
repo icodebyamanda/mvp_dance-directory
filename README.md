@@ -22,7 +22,3 @@
     console.log("Table creation 'instructors' was successful!");
     console.log("Closing...");
   });
-
-  sql = "ALTER TABLE classes ADD CONSTRAINT classes_fk0 FOREIGN KEY (style) REFERENCES dance_styles (id);";
-
-  sql = "ALTER TABLE classes ADD CONSTRAINT classes_fk1 FOREIGN KEY (instructor) REFERENCES instructors (id);";
