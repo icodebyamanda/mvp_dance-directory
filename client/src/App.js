@@ -1,29 +1,23 @@
 import './App.css';
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+import Dancestyles from './components/Dancestyles';
+import Instructors from './components/Instructors';
+import Home from './components/Home';
+import Classes from './components/Classes';
 
 function App() {
-
-  const Home = () => {
-    return <h2>Home</h2>;
-  }
-  
-  const About = () => {
-    return <h2>About</h2>;
-  }
-  
-  const Users = () => {
-    return <h2>Users</h2>;
-  }
 
   return (
     <div className="App">
       <Router>
+        <h1>Dance Classes</h1>
+
       <div>
         <nav>
           <ul>
@@ -31,10 +25,13 @@ function App() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/dancestyles">Dance Styles</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <Link to="/classes">Classes</Link>
+            </li>
+            <li>
+              <Link to="/instructors">Instructors</Link>
             </li>
           </ul>
         </nav>
@@ -42,11 +39,14 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
-            <About />
+          <Route path="/dancestyles">
+            <Dancestyles />
           </Route>
-          <Route path="/users">
-            <Users />
+          <Route path="/classes">
+            <Classes />
+          </Route>
+          <Route path="/instructors">
+            <Instructors />
           </Route>
           <Route path="/">
             <Home />

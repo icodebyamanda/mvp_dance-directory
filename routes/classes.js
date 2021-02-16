@@ -7,6 +7,7 @@ router.use(bodyParser.json());
 
 // get all info or user selection from classes
 router.get('/', async function(req, res) {
+  console.log("I am here.")
   let searchStmt = [];
 
   if(req.query){
@@ -15,21 +16,23 @@ router.get('/', async function(req, res) {
     const partner = req.query.partner;
 
     if(style) {
-      if(searchStmt.length >0) searchStmt.push(`&& style=${style}`);
-      else{searchStmt.push(`WHERE style=${style}`)}
+      if(searchStmt.length > 0) searchStmt.push(`&& style="${style}"`);
+      else{searchStmt.push(`WHERE style="${style}"`)}
     }
     if(date) {
-      if(searchStmt.length >0) searchStmt.push(`&& date=${date}`);
-      else{searchStmt.push(`WHERE date=${date}`)}
+      if(searchStmt.length > 0) searchStmt.push(`&& date="${date}"`);
+      else{searchStmt.push(`WHERE date="${date}"`)}
     }
     if(partner) {
-      if(searchStmt.length >0) searchStmt.push(`&& partner=${partner}`);
-      else{searchStmt.push(`WHERE partner=${partner}`)}
+      if(searchStmt.length > 0) searchStmt.push(`&& partner="${partner}"`);
+      else{searchStmt.push(`WHERE partner="${partner}"`)}
     }
   }
 
   try{
+    console.log("inside try")
     const response = await db(`SELECT * FROM classes ${searchStmt.join("")};`);
+    console.log(response.data)
     res.send(response.data);
   }catch(err){
     res.send(err);
