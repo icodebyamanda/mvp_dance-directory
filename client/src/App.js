@@ -18,7 +18,7 @@ function App() {
     <Router>
     <div className="App">
 
-        <h1>Dance Classes</h1>
+      <h1>Dance Classes</h1>
 
       <div>
         <nav>

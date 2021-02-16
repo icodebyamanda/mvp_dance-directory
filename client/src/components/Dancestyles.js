@@ -28,7 +28,7 @@ export default function Dancestyles() {
             <ul>
                 {danceStyles.map((d) => {
                     return (
-                        <li onClick={()=>setActiveTab(d)}>
+                        <li key={d.id} onClick={()=>setActiveTab(d)}>
                             <Link to={`/dancestyles/${d.name.toLowerCase()}`}>{d.name}</Link>
                         </li>
                     )
@@ -56,19 +56,17 @@ export default function Dancestyles() {
                 </Route>
             </Switch>
 
-            <div>
-                {/* Dance Styles Tab */}
-                {/* {danceStyles && danceStyles.map((dance) => {
-                    return (
-                        <div key ={dance.id}>
-                            <h2>name: {dance.name}</h2>
-                            <p>description: {dance.description}</p>
-                            <p>video_url: {dance.video_url}</p>
-                        </div>   
-                    )
-                })
-                } */}
-            </div>
+            {/* 
+            Link: https://reactrouter.com/web/api/Link/component-reactcomponent
+            
+            component: React.Component
+            If you would like utilize your own navigation component, you can simply do so by passing it through the component prop.
+
+            const FancyLink = React.forwardRef((props, ref) => (
+            <a ref={ref} {...props}>💅 {props.children}</a>
+            ))
+
+            <Link to="/" component={FancyLink} /> */}
         </Router>
     )
 }
