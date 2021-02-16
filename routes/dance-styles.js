@@ -17,6 +17,7 @@ router.get('/', async function(req, res) {
 
 // add a new dance style
 router.post('/', async function(req, res) {
+  console.log("here?")
   const name = req.body.name;
   const url = req.body.url;
   const description = req.body.description;

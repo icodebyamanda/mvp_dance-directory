@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,12 +10,14 @@ import Dancestyles from './components/Dancestyles';
 import Instructors from './components/Instructors';
 import Home from './components/Home';
 import Classes from './components/Classes';
+import DanceDisplay from './components/DanceDisplay';
 
 function App() {
 
   return (
+    <Router>
     <div className="App">
-      <Router>
+
         <h1>Dance Classes</h1>
 
       <div>
@@ -53,8 +55,9 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </Router>
+
     </div>
+    </Router>
   );
 }
 
