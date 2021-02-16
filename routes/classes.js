@@ -5,10 +5,31 @@ const db = require("../model/helper");
 
 router.use(bodyParser.json());
 
-// get everything from classes
+// get all info or user selection from classes
 router.get('/', async function(req, res) {
+  let searchStmt = [];
+
+  if(req.query){
+    const style = req.query.style;
+    const date = req.query.date;
+    const partner = req.query.partner;
+
+    if(style) {
+      if(searchStmt.length >0) searchStmt.push(`&& style=${style}`);
+      else{searchStmt.push(`WHERE style=${style}`)}
+    }
+    if(date) {
+      if(searchStmt.length >0) searchStmt.push(`&& date=${date}`);
+      else{searchStmt.push(`WHERE date=${date}`)}
+    }
+    if(partner) {
+      if(searchStmt.length >0) searchStmt.push(`&& partner=${partner}`);
+      else{searchStmt.push(`WHERE partner=${partner}`)}
+    }
+  }
+
   try{
-    const response = await db("SELECT * FROM classes;");
+    const response = await db(`SELECT * FROM classes ${searchStmt.join("")};`);
     res.send(response.data);
   }catch(err){
     res.send(err);
