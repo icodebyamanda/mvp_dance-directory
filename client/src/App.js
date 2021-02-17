@@ -10,7 +10,6 @@ import Dancestyles from './components/Dancestyles';
 import Instructors from './components/Instructors';
 import Home from './components/Home';
 import Classes from './components/Classes';
-import DanceDisplay from './components/DanceDisplay';
 
 function App() {
 

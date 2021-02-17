@@ -11,20 +11,26 @@ router.get('/', async function(req, res) {
   let searchStmt = [];
 
   if(req.query){
+    const id = req.query.id;
     const style = req.query.style;
     const date = req.query.date;
     const partner = req.query.partner;
 
+    if(id) {
+      if(searchStmt.length > 0) searchStmt.push(`AND id="${id}"`);
+      else{searchStmt.push(`WHERE id="${id}"`)}
+    }
+
     if(style) {
-      if(searchStmt.length > 0) searchStmt.push(`&& style="${style}"`);
+      if(searchStmt.length > 0) searchStmt.push(`AND style="${style}"`);
       else{searchStmt.push(`WHERE style="${style}"`)}
     }
     if(date) {
-      if(searchStmt.length > 0) searchStmt.push(`&& date="${date}"`);
+      if(searchStmt.length > 0) searchStmt.push(`AND date="${date}"`);
       else{searchStmt.push(`WHERE date="${date}"`)}
     }
     if(partner) {
-      if(searchStmt.length > 0) searchStmt.push(`&& partner="${partner}"`);
+      if(searchStmt.length > 0) searchStmt.push(`AND partner="${partner}"`);
       else{searchStmt.push(`WHERE partner="${partner}"`)}
     }
   }

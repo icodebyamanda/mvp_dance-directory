@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-    BrowserRouter as Router,
+    // BrowserRouter as Router,
     Switch,
     Route,
     Link
@@ -10,7 +10,7 @@ import {
 export default function Dancestyles() {
 
     const [danceStyles, setDanceStyles] = useState([]);
-    const [activeTab, setActiveTab] = useState([]);
+    // const [activeTab, setActiveTab] = useState([]);
 
     const fetchDanceInfo = async () => {
         const response = await fetch('/dancestyles');
@@ -20,22 +20,25 @@ export default function Dancestyles() {
     
     useEffect(() => {
         fetchDanceInfo();
-        setActiveTab(danceStyles[0]);
+        // setActiveTab(danceStyles[0]);
     }, []);
 
     return (
-        <Router>
+        // <Router>
+        <div>
             <ul>
                 {danceStyles.map((d) => {
                     return (
-                        <li key={d.id} onClick={()=>setActiveTab(d)}>
-                            <Link to={`/dancestyles/${d.name.toLowerCase()}`}>{d.name}</Link>
+                        // <li key={d.id} onClick={()=>setActiveTab(d)}>
+                        <li key={d.id}>
+                            {/* <Link to={`/dancestyles/${d.name.toLowerCase()}`}>{d.name}</Link> */}
+                            <Link to={`/dancestyles/${d.id}`}>{d.name}</Link>
                         </li>
                     )
                 })}
             </ul>
 
-            <Switch>
+            {/* <Switch>
                 <Route path="/dancestyles/bachata">
                     <DanceDisplay dance={activeTab}/>
                 </Route>
@@ -54,19 +57,18 @@ export default function Dancestyles() {
                 <Route path="/">
                     Dance Styles Home               
                 </Route>
+            </Switch> */}
+
+            <Switch>
+                <Route path="/dancestyles/:id">
+                    <DanceDisplay />
+                </Route>
+                <Route path="/">
+                    Dance Styles Home               
+                </Route>
             </Switch>
 
-            {/* 
-            Link: https://reactrouter.com/web/api/Link/component-reactcomponent
-            
-            component: React.Component
-            If you would like utilize your own navigation component, you can simply do so by passing it through the component prop.
-
-            const FancyLink = React.forwardRef((props, ref) => (
-            <a ref={ref} {...props}>💅 {props.children}</a>
-            ))
-
-            <Link to="/" component={FancyLink} /> */}
-        </Router>
+            </div>
+        // </Router>
     )
 }

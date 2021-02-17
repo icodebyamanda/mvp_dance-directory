@@ -5,6 +5,19 @@ const db = require("../model/helper");
 
 router.use(bodyParser.json());
 
+// get dance style by id from dance_styles
+router.get('/:id', async function(req, res) {
+
+  const { id } = req.params;
+  console.log(id)
+  try{
+    const response = await db(`SELECT * FROM dance_styles WHERE id=${id};`);
+    res.send(response.data);
+  }catch(err){
+    res.send(err);
+  }
+});
+
 // get everything from dance_styles
 router.get('/', async function(req, res) {
   try{
