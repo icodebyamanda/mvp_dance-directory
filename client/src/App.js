@@ -18,7 +18,6 @@ function App() {
     <div className="App">
 
       <h1>Dance Classes</h1>
-
       <div>
         <nav>
           <ul>

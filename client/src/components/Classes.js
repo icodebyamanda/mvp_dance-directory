@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom";
 
 export default function Classes() {
     const [classes, setClasses] = useState([]);
     const [styles, setStyles] = useState([]);
     const [filterOptions, setFilterOptions] = useState([]);
+
+    let history = useHistory();
+
+
+    //test
+    const [selection, setSelection] = useState(
+        {
+            "style":"",
+            "partner":"",
+            "day": ""
+        }
+    )
 
     const fetchClasses = async () => {
         const response = await fetch(`/classes`);
@@ -26,38 +39,36 @@ export default function Classes() {
     const handleChange = (event) => {
         const key =  event.target.name;
         const value = event.target.value;
+        console.log(key);
+        console.log(value);
 
+        // setSelection(selection => {
+
+        // }
+        //     [key] = value
+        //     )
+
+        //works
         if(filterOptions.length){
-            // newState.map((el) => {
-            //     if(el.option === key ){
-            //         el.id = value;
-            //     }
-            // })
-
             let newState = filterOptions.filter((el) => {
                 return el.option !== key;
 
             })
-            // console.log("newState after creation:")
-            // console.log(newState)
             newState.push({"id":value, "option":key})
-            // console.log("newState after adding item:")
-            // console.log(newState)
-
             setFilterOptions(newState)
         } else{
             setFilterOptions([...filterOptions,
                 { "id":value, "option":key }
             ])
         }
-       
     }
 
     const filter = async (event) => {
         event.preventDefault();
         const path = [];
         filterOptions.forEach((filter) => path.push(`${filter.option}=${filter.id}`));
-        console.log(path.join("&"));
+        history.push(`/classes/?${path.join("&")}`);
+
         const response = await fetch(`/classes/?${path.join("&")}`)
         const data = await response.json();
         setClasses(data);
@@ -66,14 +77,17 @@ export default function Classes() {
     const clearFilter = () => {
         setFilterOptions([]);
         fetchClasses();
-        //how to clear selection in dropdown?
+        //how to clear selection in dropdown? 
     }
 
+    
     return (
+
         <div>
             <h4>Classes Tab</h4>
             <p>Filter Options</p>
 
+            {/* test */}
             <form onSubmit={filter}>
                 <label htmlFor="style">Style:</label>
                 <select id="style" name="style" onChange={(e) => handleChange(e)}>
@@ -88,23 +102,23 @@ export default function Classes() {
                     <option value="0">No</option>
                 </select>
 
-                <label htmlFor="weekday">Weekday:</label>
-                <select id="weekday" name="weekday">
+                <label htmlFor="day">Weekday:</label>
+                <select id="day" name="day" onChange={handleChange}>
                     <option value="">Select one</option>
-                    <option value="1">Monday</option>
-                    <option value="2">Tuesday</option>
-                    <option value="3">Wednesday</option>
-                    <option value="4">Thursday</option>
-                    <option value="4">Friday</option>
-                    <option value="6">Saturday</option>
-                    <option value="7">Sunday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
                 </select>
 
                 <button>Filter</button> 
             </form> 
 
-            <button onClick={clearFilter}>Clear Filters</button>    
-            
+            <button onClick={clearFilter}>Clear Filters</button>   
+            {/* how to clear selection in dropdown? */}
             
             {classes && (
                 classes.map((c) => {
@@ -112,7 +126,7 @@ export default function Classes() {
                 <div key={c.id}>
                     <h3>name: {c.name}</h3>
                     <p>style: {c.style}</p>
-                    <p>date: {c.date}</p>
+                    <p>day: {c.day}</p>
                     <p>time: {c.time}</p>
                     <p>address: {c.address}</p>
                     <p>instructor: {c.instructor}</p>
@@ -123,5 +137,6 @@ export default function Classes() {
             )}
 
         </div>
+
     )
 }

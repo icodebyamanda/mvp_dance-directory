@@ -21,12 +21,14 @@ export default function DanceDisplay() {
 
             {danceStyles && (
                 <div key ={danceStyles.id}>
-                <h2>name: {danceStyles.name}</h2>
-                <p>description: {danceStyles.description}</p>
-                <p>video_url: {danceStyles.video_url}</p>
-            </div>   
+                    <h2>name: {danceStyles.name}</h2>
+                    <p>description: {danceStyles.description}</p>
+                    <p>video_url: {danceStyles.video_url}</p>
+                    <p><iframe src={`${danceStyles.video_url}`}></iframe></p>
+                    <a href={`/classes/?style=${danceStyles.id}`}>See {danceStyles.name}</a>          
+                </div>   
             )}
-            
+           
         </div>
     )
 }

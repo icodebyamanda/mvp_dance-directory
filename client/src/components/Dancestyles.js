@@ -64,7 +64,7 @@ export default function Dancestyles() {
                     <DanceDisplay />
                 </Route>
                 <Route path="/">
-                    Dance Styles Home               
+                    Dance Styles Home     
                 </Route>
             </Switch>
 

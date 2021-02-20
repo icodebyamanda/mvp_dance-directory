@@ -22,3 +22,11 @@
     console.log("Table creation 'instructors' was successful!");
     console.log("Closing...");
   });
+
+
+  Sample Data for Dance Styles: 
+  { "name": "Bachata", "description" : "Bachata description", "video_url" : "https://www.youtube.com/embed/sBhWxgOLRwo"}
+{ "name": "Ballet", "description" : "Ballet description", "video_url" : "https://www.youtube.com/embed/3TLSrI_hXEw"}
+{ "name": "Ballroom", "description" : "Ballroom description", "video_url" : "https://www.youtube.com/embed/Ti_YU-vsG34"}
+{ "name": "Salsa", "description" : "Salsa description", "video_url" : "https://www.youtube.com/embed/tBEc9Kni6I0"}
+{ "name": "Tango", "description" : "Tango description", "video_url" : "https://www.youtube.com/embed/7uA3mwfadAM"}

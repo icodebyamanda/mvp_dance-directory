@@ -32,7 +32,7 @@ router.get('/', async function(req, res) {
 router.post('/', async function(req, res) {
   console.log("here?")
   const name = req.body.name;
-  const url = req.body.url;
+  const url = req.body.video_url;
   const description = req.body.description;
   try{
     const response = await db(`INSERT INTO dance_styles (name, video_url, description) VALUES ("${name}", "${url}", "${description}");`);
