@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 
 export default function Classes() {
     let history = useHistory();
+    let pathname = history.location.pathname;
+    let query = history.location.search;
 
     const [classes, setClasses] = useState([]);
     const [styles, setStyles] = useState([]);
@@ -13,7 +15,13 @@ export default function Classes() {
         })
 
     const fetchClasses = async () => {
-        const response = await fetch(`/classes`);
+        let response;
+        if(query !== ""){
+            response = await fetch(`${pathname}${query}`);
+        } else {
+            response = await fetch(`${pathname}`);
+        }
+
         const data = await response.json();
         setClasses(data);
     }
@@ -28,7 +36,6 @@ export default function Classes() {
         fetchClasses();
         fetchStyles();
     }, [])
-
 
     const handleChange = (event) => {
         const key =  event.target.name;
@@ -50,20 +57,20 @@ export default function Classes() {
             }
         }
         history.push(`/classes/?${path.join("&")}`);
-        
         const response = await fetch(`/classes/?${path.join("&")}`);
         const data = await response.json();
         setClasses(data);
     }
 
     const clearFilter = () => {
-        fetchClasses();
+        history.push(`/classes`);
+        query = "";
         setSelection({
             "style":"",
             "partner":"",
             "day": ""
         })
-        history.push(`/classes`);
+        fetchClasses();
     }
 
     return (
@@ -80,7 +87,7 @@ export default function Classes() {
                 </select>
 
                 <label htmlFor="partner">Partner required:</label>
-                <select name="partner" value={selection.partner} onChange={handleChange} id="partner">
+                <select id="partner" name="partner" value={selection.partner} onChange={handleChange}>
                     <option value="" disabled>Select one</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>

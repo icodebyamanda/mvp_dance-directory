@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import {
+    // BrowserRouter as Router,
+    // Switch,
+    // Route,
+    Link
+  } from "react-router-dom";
 
 export default function DanceDisplay() {
     const { id } = useParams();
@@ -25,7 +31,7 @@ export default function DanceDisplay() {
                     <p>description: {danceStyles.description}</p>
                     <p>video_url: {danceStyles.video_url}</p>
                     <p><iframe src={`${danceStyles.video_url}`}></iframe></p>
-                    <a href={`/classes/?style=${danceStyles.id}`}>See {danceStyles.name}</a>          
+                    <Link to={{pathname: `/classes/`, search: `?style=${danceStyles.id}`}}>Find {danceStyles.name} Classes</Link>
                 </div>   
             )}
            
