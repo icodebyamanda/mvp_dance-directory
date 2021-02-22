@@ -121,7 +121,7 @@ export default function Classes() {
                     <p>time: {c.time}</p>
                     <p>address: {c.address}</p>
                     <p>instructor: {c.instructor}</p>
-                    <p>partner: {c.partner}</p>
+                    <p>partner: {c.partner?"Yes" : "No"}</p>
                     <p>price: {c.price}</p>
                 </div>
                 )})

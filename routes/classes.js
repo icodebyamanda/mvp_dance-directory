@@ -6,61 +6,64 @@ const db = require("../model/helper");
 router.use(bodyParser.json());
 
 // get all info or user selection from classes
-// router.get('/', async function(req, res) {
-//   console.log("I am here.")
-//   let searchStmt = [];
-
-
-//   if(req.query){
-//     console.log(req.query)
-
-//     const { id, style, day, partner } = req.query;
-//     if(id) {
-//       if(searchStmt.length > 0) searchStmt.push(`AND id="${id}"`);
-//       else{searchStmt.push(`WHERE id="${id}"`)}
-//     }
-
-//     if(style) {
-//       if(searchStmt.length > 0) searchStmt.push(`AND style="${style}"`);
-//       else{searchStmt.push(`WHERE style="${style}"`)}
-//     }
-//     if(day) {
-//       if(searchStmt.length > 0) searchStmt.push(`AND day="${day}"`);
-//       else{searchStmt.push(`WHERE day="${day}"`)}
-//     }
-//     if(partner) {
-//       if(searchStmt.length > 0) searchStmt.push(`AND partner="${partner}"`);
-//       else{searchStmt.push(`WHERE partner="${partner}"`)}
-//     }
-
-//   }
-
-//   try{
-//     console.log("inside try")
-//     const response = await db(`SELECT * FROM classes ${searchStmt.join("")};`);
-//     console.log(response.data)
-//     res.send(response.data);
-//   }catch(err){
-//     res.send(err);
-//   }
-// });
-
 router.get('/', async function(req, res) {
+  console.log("I am here.")
+  let searchStmt = [];
 
-    try{
+
+  if(req.query){
+    console.log(req.query)
+
+    const { id, style, day, partner } = req.query;
+    if(id) {
+      if(searchStmt.length > 0) searchStmt.push(`AND id="${id}"`);
+      else{searchStmt.push(`WHERE id="${id}"`)}
+    }
+
+    if(style) {
+      if(searchStmt.length > 0) searchStmt.push(`AND style="${style}"`);
+      else{searchStmt.push(`WHERE style="${style}"`)}
+    }
+    if(day) {
+      if(searchStmt.length > 0) searchStmt.push(`AND day="${day}"`);
+      else{searchStmt.push(`WHERE day="${day}"`)}
+    }
+    if(partner) {
+      if(searchStmt.length > 0) searchStmt.push(`AND partner="${partner}"`);
+      else{searchStmt.push(`WHERE partner="${partner}"`)}
+    }
+  }
+
+  try{
     console.log("inside try")
-    //works
-    // const response = await db(`SELECT c.id, d.name, d.video_url, d.description, c.day, c.time FROM classes AS c INNER JOIN dance_styles AS d ON c.style=d.id`);
-
-    //also works
-    const response = await db(`SELECT c.id, i.introduction, i.name AS instructor, d.name, d.video_url, d.description, c.day, c.time FROM classes AS c LEFT JOIN dance_styles AS d ON c.style=d.id LEFT JOIN instructors AS i ON c.instructor=i.id`);
+    // const response = await db(`SELECT * FROM classes ${searchStmt.join("")};`);
+   
+    const response = await db(`SELECT c.id, c.name, d.name AS style, c.day, c.time, c.address, c.partner, c.price, i.name AS instructor FROM classes AS c LEFT JOIN dance_styles AS d ON c.style=d.id LEFT JOIN instructors AS i ON c.instructor=i.id ${searchStmt.join("")};`);
 
     console.log(response.data)
     res.send(response.data);
   }catch(err){
     res.send(err);
   }
-})
+});
+
+//Testing LEFT JOIN
+// router.get('/', async function(req, res) {
+
+//     try{
+
+//     //works
+//     // const response = await db(`SELECT c.id, d.name, d.video_url, d.description, c.day, c.time FROM classes AS c INNER JOIN dance_styles AS d ON c.style=d.id`);
+
+//     //also works
+//     const response = await db(`SELECT c.id, c.name, d.name AS style, c.day, c.time, c.address, c.partner, c.price, i.name AS instructor FROM classes AS c LEFT JOIN dance_styles AS d ON c.style=d.id LEFT JOIN instructors AS i ON c.instructor=i.id`);
+
+//     console.log(response.data)
+//     res.send(response.data);
+//   }catch(err){
+//     res.send(err);
+//   }
+// })
 
 // INNER JOIN:
 // --From your example, IdTableA is the foreign key in Table B which relates it to a record
@@ -73,15 +76,6 @@ router.get('/', async function(req, res) {
 // ON b.[IdTableA] = a.[Id]
 
 // https://stackoverflow.com/questions/53528044/join-two-tables-on-express-api
-
-/*
-SELECT c.[id] d.[name] c.[day] c.[time] 
-FROM classes AS c
-INNER JOIN dance_styles AS d
-ON d.[name] = c.[id]
-
-*/
-
 
 // add a new class
 router.post('/', async function(req, res) {
