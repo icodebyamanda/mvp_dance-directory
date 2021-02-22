@@ -33,6 +33,7 @@ export default function Classes() {
     }
 
     useEffect(() => {
+        console.log(history.location)
         fetchClasses();
         fetchStyles();
     }, [])
