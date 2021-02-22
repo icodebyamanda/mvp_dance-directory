@@ -24,6 +24,7 @@ export default function Instructors() {
                         {i.name}
                         {i.introduction}
                         {i.email}
+                        <img src={`${i.photo}`}/>
                     </div>
                 })
             }

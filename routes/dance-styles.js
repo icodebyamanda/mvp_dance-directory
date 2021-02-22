@@ -34,8 +34,10 @@ router.post('/', async function(req, res) {
   const name = req.body.name;
   const url = req.body.video_url;
   const description = req.body.description;
+  const image = req.body.image;
+
   try{
-    const response = await db(`INSERT INTO dance_styles (name, video_url, description) VALUES ("${name}", "${url}", "${description}");`);
+    const response = await db(`INSERT INTO dance_styles (name, video_url, description, image) VALUES ("${name}", "${url}", "${description}", "${image}");`);
     res.send({ message: "dance added successfully"});
   }catch(err){
     res.send(err);

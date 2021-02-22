@@ -80,6 +80,8 @@ export default function Classes() {
             <h4>Classes Tab</h4>
             <p>Filter Options</p>
 
+            {pathname !== "/classes" && <p>Your results are filtered. Clear filter to see all avalable classes</p>}
+
             <form onSubmit={filter}>
                 <label htmlFor="style">Style:</label>
                 <select id="style" name="style" value={selection.style} onChange={(e) => handleChange(e)}>
@@ -123,6 +125,7 @@ export default function Classes() {
                     <p>instructor: {c.instructor}</p>
                     <p>partner: {c.partner?"Yes" : "No"}</p>
                     <p>price: {c.price}</p>
+                    <img src={`${c.image}`}/>
                 </div>
                 )})
             )}

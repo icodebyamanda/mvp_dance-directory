@@ -20,8 +20,10 @@ router.post('/', async function(req, res) {
   const name = req.body.name;
   const introduction = req.body.introduction;
   const email = req.body.email;
+  const photo = req.body.photo;
+
   try{
-    const response = await db(`INSERT INTO instructors (name, introduction, email) VALUES ("${name}", "${introduction}", "${email}");`);
+    const response = await db(`INSERT INTO instructors (name, introduction, email, photo) VALUES ("${name}", "${introduction}", "${email}", "${photo}");`);
     res.send({ message: "Instructor added successfully"});
   }catch(err){
     res.send(err);
@@ -34,7 +36,7 @@ router.put('/:id', async function(req, res) {
     const { id } = req.params;
     const currRecord = await db(`SELECT * FROM instructors WHERE id="${id}";`);
     const newRecord = {...currRecord, ...req.body};
-    const response = await db(`UPDATE instructors SET name="${newRecord.name}",  introduction="${newRecord.introduction}", email="${newRecord.email}" WHERE id="${id}";`);
+    const response = await db(`UPDATE instructors SET name="${newRecord.name}", introduction="${newRecord.introduction}", email="${newRecord.email}", photo="${newRecord.photo}" WHERE id="${id}";`);
     res.send({message: "Record updated successfully"});
   } catch(err) {
     res.send(err);

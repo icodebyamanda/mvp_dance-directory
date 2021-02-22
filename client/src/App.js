@@ -16,8 +16,12 @@ function App() {
   return (
     <Router>
     <div className="App">
+      <div className="header">
+        <img src="/Dancing-2_350x350.jpg" alt=""/>
+        <h1>Dance Classes</h1>
+        <img src="/Dancing-1_350x350.jpg"  alt=""/>
+      </div>
 
-      <h1>Dance Classes</h1>
       <div>
         <nav>
           <ul>

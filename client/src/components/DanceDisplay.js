@@ -28,6 +28,7 @@ export default function DanceDisplay() {
             {danceStyles && (
                 <div key ={danceStyles.id}>
                     <h2>name: {danceStyles.name}</h2>
+                    <img src={`${danceStyles.image}`} alt="" />
                     <p>description: {danceStyles.description}</p>
                     <p>video_url: {danceStyles.video_url}</p>
                     <p><iframe src={`${danceStyles.video_url}`}></iframe></p>
