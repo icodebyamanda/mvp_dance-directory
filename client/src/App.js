@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <div className="header">
         <img src="/Dancing-2_350x350.jpg" alt=""/>
-        <h1>Dance Classes</h1>
+        <h1>Dance Classes Directory</h1>
         <img src="/Dancing-1_350x350.jpg"  alt=""/>
       </div>
 
@@ -56,6 +56,16 @@ function App() {
             <Home />
           </Route>
         </Switch>
+      </div>
+
+
+      <div className="footer">
+        <nav>
+          <ul>
+            <li><Link to="#">Admin Login</Link></li>
+            <li><Link to="#">Instructor Login</Link></li>
+          </ul>
+        </nav>
       </div>
 
     </div>

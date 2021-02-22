@@ -77,26 +77,23 @@ export default function Classes() {
     return (
 
         <div>
-            <h4>Classes Tab</h4>
-            <p>Filter Options</p>
-
-            {pathname !== "/classes" && <p>Your results are filtered. Clear filter to see all avalable classes</p>}
+            <h4>Currently Available Classes</h4>
 
             <form onSubmit={filter}>
-                <label htmlFor="style">Style:</label>
+                <label htmlFor="style">Style: </label>
                 <select id="style" name="style" value={selection.style} onChange={(e) => handleChange(e)}>
                     <option value="" disabled>Select one</option>
                     {styles.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
                 </select>
 
-                <label htmlFor="partner">Partner required:</label>
+                <label htmlFor="partner"> Partner required: </label>
                 <select id="partner" name="partner" value={selection.partner} onChange={handleChange}>
                     <option value="" disabled>Select one</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
 
-                <label htmlFor="day">Weekday:</label>
+                <label htmlFor="day"> Weekday: </label>
                 <select id="day" name="day" value={selection.day} onChange={handleChange}>
                     <option value="" disabled>Select one</option>
                     <option value="Monday">Monday</option>
@@ -108,24 +105,36 @@ export default function Classes() {
                     <option value="Sunday">Sunday</option>
                 </select>
 
-                <button>Filter</button> 
+                <span>
+                    <button>Filter</button> 
+                </span>
             </form> 
 
-            <button onClick={clearFilter}>Clear Filters</button>   
+            {pathname !== "/classes" && (
+                <p>
+                    <a href="#" className="filter" onClick={clearFilter}>Clear Filters</a>
+                </p>
+                )}
             
             {classes && (
                 classes.map((c) => {
                 return (
-                <div key={c.id}>
-                    <h3>name: {c.name}</h3>
-                    <p>style: {c.style}</p>
-                    <p>day: {c.day}</p>
-                    <p>time: {c.time}</p>
-                    <p>address: {c.address}</p>
-                    <p>instructor: {c.instructor}</p>
-                    <p>partner: {c.partner?"Yes" : "No"}</p>
-                    <p>price: {c.price}</p>
-                    <img src={`${c.image}`}/>
+                <div className="classDisplay" key={c.id}>
+                    <div className="left">
+                        <img src={`${c.image}`}/>
+                    </div>
+                    <div className="middle">
+                        <h3>{c.name}</h3>
+                        <p>When: {c.day} at {c.time}</p>
+                        <p>Where: {c.address}</p>
+                        <p>Partner required: {c.partner?"Yes" : "No"}</p>
+                        <p>Cost: £{c.price}</p>
+                    </div>
+                    <div className="right">
+                        <p>Taught by: {c.instructor}</p>
+                        <img src={`${c.photo}`}/>
+                        <p className="contact"><a href="#">Contact Instructor</a></p>
+                    </div>
                 </div>
                 )})
             )}

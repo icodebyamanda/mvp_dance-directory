@@ -22,20 +22,19 @@ export default function DanceDisplay() {
     }, [id]);
 
     return (
-        <div>
-            Dance display tab
-
+        <div className="danceDisplay">
             {danceStyles && (
-                <div key ={danceStyles.id}>
-                    <h2>name: {danceStyles.name}</h2>
-                    <img src={`${danceStyles.image}`} alt="" />
-                    <p>description: {danceStyles.description}</p>
-                    <p>video_url: {danceStyles.video_url}</p>
-                    <p><iframe src={`${danceStyles.video_url}`}></iframe></p>
-                    <Link to={{pathname: `/classes/`, search: `?style=${danceStyles.id}`}}>Find {danceStyles.name} Classes</Link>
+                <div className="danceInfo" key ={danceStyles.id}>
+                    <h3>{danceStyles.name}</h3>
+                    <p>{danceStyles.description}: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                    <iframe width="560" height="340" src={`${danceStyles.video_url}`}></iframe>
+
+                    <div>
+                        Like what you see? 
+                    <Link to={{pathname: `/classes/`, search: `?style=${danceStyles.id}`}}> Find {danceStyles.name} Classes</Link>
+                    </div>
                 </div>   
-            )}
-           
+            )}        
         </div>
     )
 }

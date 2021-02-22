@@ -1,4 +1,149 @@
 .App {
   text-align: center;
 }
- 
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 800px;
+  margin: auto;
+
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.header img {
+  width: 100px;
+}
+
+nav {
+  background: red;
+  padding: 6px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0;
+  margin: 0
+}
+
+nav li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+nav li a {
+  color:white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav li a:hover {
+  text-decoration: underline;
+}
+
+.stylesDisplay {
+  display: flex;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.stylesDisplay ul {
+  list-style-type: none;
+  margin: 0;
+  padding:0;
+  text-align: left;
+}
+
+.stylesDisplay li a {
+  color:black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.stylesDisplay li a:hover {
+  text-decoration: underline;
+}
+
+.stylesDisplay img {
+  width: 80%;
+}
+
+.danceDisplay {
+  background-color: lightgray;
+  width: 80%;
+  text-align: left;
+  padding: 0 20px;
+}
+
+.danceInfo div {
+  margin: 20px 0;
+}
+
+.danceDisplay a {
+  color:red;
+  text-decoration: none;
+}
+
+.classDisplay, .instructorDisplay {
+  display: flex;
+  border: 2px solid lightgrey;
+  border-radius: 2em;
+  margin: 7px;
+}
+
+.left {
+  flex-basis: 25%;
+  align-self: center;
+}
+
+.left img {
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+.middle {
+  flex-basis: 50%;
+  background: lightgray;
+  padding: 0 10px;
+}
+
+.right {
+  flex-basis: 25%;
+  align-self: center;
+  align-content: center;
+
+}
+
+.right img {
+  max-width: 80%;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.contact a, .filter {
+  font-size: 12px;
+  color: red;
+}
+
+form span {
+  padding-left: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -38,7 +38,7 @@ router.get('/', async function(req, res) {
     console.log("inside try")
     // const response = await db(`SELECT * FROM classes ${searchStmt.join("")};`);
    
-    const response = await db(`SELECT c.id, c.name, d.name AS style, c.day, c.time, c.address, c.partner, c.price, i.name AS instructor FROM classes AS c LEFT JOIN dance_styles AS d ON c.style=d.id LEFT JOIN instructors AS i ON c.instructor=i.id ${searchStmt.join("")};`);
+    const response = await db(`SELECT c.id, c.name, d.name AS style, c.day, c.time, c.address, c.partner, c.price, c.image, i.name AS instructor, i.photo FROM classes AS c LEFT JOIN dance_styles AS d ON c.style=d.id LEFT JOIN instructors AS i ON c.instructor=i.id ${searchStmt.join("")};`);
 
     console.log(response.data)
     res.send(response.data);
@@ -87,8 +87,10 @@ router.post('/', async function(req, res) {
   const partner = req.body.partner;
   const style = req.body.style;
   const instructor = req.body.instructor;
+  const image = req.body.image;
+
   try{
-    const response = await db(`INSERT INTO classes (name, day, time, address, price, partner, style, instructor) VALUES ("${name}", "${day}", "${time}", "${address}", "${price}", "${partner}", "${style}", "${instructor}");`);
+    const response = await db(`INSERT INTO classes (name, day, time, address, price, partner, style, instructor, image) VALUES ("${name}", "${day}", "${time}", "${address}", "${price}", "${partner}", "${style}", "${instructor}", "${image}");`);
     res.send({ message: "Class added successfully"});
   }catch(err){
     res.send(err);
@@ -101,7 +103,7 @@ router.put('/:id', async function(req, res) {
     const { id } = req.params;
     const currRecord = await db(`SELECT * FROM classes WHERE id="${id}";`);
     const newRecord = {...currRecord, ...req.body};
-    const response = await db(`UPDATE classes SET name="${newRecord.name}", day="${newRecord.day}", time="${newRecord.time}", address="${newRecord.address}", price="${newRecord.price}", partner="${newRecord.partner}", style="${newRecord.style}", instructor="${newRecord.instructor}" WHERE id="${id}";`);
+    const response = await db(`UPDATE classes SET name="${newRecord.name}", day="${newRecord.day}", time="${newRecord.time}", address="${newRecord.address}", price="${newRecord.price}", partner="${newRecord.partner}", style="${newRecord.style}", instructor="${newRecord.instructor}", image="${newRecord.image}" WHERE id="${id}";`);
     res.send({message: "Record updated successfully"});
   } catch(err) {
     res.send(err);
