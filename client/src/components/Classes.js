@@ -34,6 +34,14 @@ export default function Classes() {
 
     useEffect(() => {
         console.log(history.location)
+        //test
+        if(query){
+            setSelection({
+                "style": query.charAt(query.length-1),
+                "partner":"",
+                "day": ""
+            })
+        }
         fetchClasses();
         fetchStyles();
     }, [])
@@ -50,7 +58,6 @@ export default function Classes() {
 
     const filter = async (event) => {
         event.preventDefault();
-
         const path = [];
         for(let item in selection){
             if(selection[item] !== ""){
@@ -58,11 +65,9 @@ export default function Classes() {
             }
         }
         history.push(`/classes/?${path.join("&")}`);
-
         const response = await fetch(`/classes/?${path.join("&")}`);
         const data = await response.json();
-        setClasses(data);
-        
+        setClasses(data);     
     }
 
     const clearFilter = () => {
@@ -88,14 +93,14 @@ export default function Classes() {
                     {styles.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
                 </select>
 
-                <label htmlFor="partner"> Partner required: </label>
+                <label htmlFor="partner">  Partner required: </label>
                 <select id="partner" name="partner" value={selection.partner} onChange={handleChange}>
                     <option value="" disabled>Select one</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
 
-                <label htmlFor="day"> Weekday: </label>
+                <label htmlFor="day">  Weekday: </label>
                 <select id="day" name="day" value={selection.day} onChange={handleChange}>
                     <option value="" disabled>Select one</option>
                     <option value="Monday">Monday</option>
@@ -114,7 +119,6 @@ export default function Classes() {
 
             {/* {pathname !== "/classes" && ( */}
             {query !== "" && (
-
                 <p>
                     <a href="#" className="filter" onClick={clearFilter}>Clear Filters</a>
                 </p>
