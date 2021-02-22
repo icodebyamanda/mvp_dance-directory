@@ -58,9 +58,11 @@ export default function Classes() {
             }
         }
         history.push(`/classes/?${path.join("&")}`);
+
         const response = await fetch(`/classes/?${path.join("&")}`);
         const data = await response.json();
         setClasses(data);
+        
     }
 
     const clearFilter = () => {
@@ -110,7 +112,9 @@ export default function Classes() {
                 </span>
             </form> 
 
-            {pathname !== "/classes" && (
+            {/* {pathname !== "/classes" && ( */}
+            {query !== "" && (
+
                 <p>
                     <a href="#" className="filter" onClick={clearFilter}>Clear Filters</a>
                 </p>
