@@ -1,11 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
 const db = require("../model/helper");
+var bcrypt = require("bcrypt");
+require("dotenv").config();
+
+const supersecret = process.env.SUPER_SECRET;
 
 router.use(bodyParser.json());
 
-router.post("/login", async (req, res) => {
+router.post("/", async (req, res) => {
   const { username, password } = req.body;
 
   try {

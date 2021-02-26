@@ -9,7 +9,7 @@ var danceStylesRouter = require('./routes/dance-styles');
 var instructorsRouter = require('./routes/instructors');
 var classesRouter = require('./routes/classes');
 var registrationRouter = require('./routes/registration');
-// var loginRouter = require('./routes/login');
+var loginRouter = require('./routes/login');
 
 var app = express();
 
@@ -27,6 +27,7 @@ app.use('/dancestyles', danceStylesRouter);
 app.use('/instructors', instructorsRouter);
 app.use('/classes', classesRouter);
 app.use('/register', registrationRouter);
+app.use('/login', loginRouter);
 
 
 // catch 404 and forward to error handler
