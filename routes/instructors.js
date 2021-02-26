@@ -20,7 +20,7 @@ router.post('/', async function(req, res) {
   const name = req.body.name;
   const introduction = req.body.introduction;
   const email = req.body.email;
-  const password = req.body.password; // seems need to be added because of password column added?
+  const password = req.body.password; // seems need to be added because of password column added? Yes can be marked as null
   const photo = req.body.photo;
 
   try{
@@ -31,7 +31,7 @@ router.post('/', async function(req, res) {
   }
 });
 
-// update an existing instructor
+// update an existing instructor // NORMALLY REPLACE. G said to not add pswd here
 router.put('/:id', async function(req, res) {
   try{
     const { id } = req.params;
