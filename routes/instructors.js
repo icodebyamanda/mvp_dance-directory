@@ -20,10 +20,11 @@ router.post('/', async function(req, res) {
   const name = req.body.name;
   const introduction = req.body.introduction;
   const email = req.body.email;
+  const password = req.body.password; // seems need to be added because of password column added?
   const photo = req.body.photo;
 
   try{
-    const response = await db(`INSERT INTO instructors (name, introduction, email, photo) VALUES ("${name}", "${introduction}", "${email}", "${photo}");`);
+    const response = await db(`INSERT INTO instructors (name, introduction, email, password, photo) VALUES ("${name}", "${introduction}", "${email}", "${password}, "${photo}");`);
     res.send({ message: "Instructor added successfully"});
   }catch(err){
     res.send(err);
