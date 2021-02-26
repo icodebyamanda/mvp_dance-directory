@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var danceStylesRouter = require('./routes/dance-styles');
 var instructorsRouter = require('./routes/instructors');
 var classesRouter = require('./routes/classes');
+var loginRouter = require('.routes/login');
 
 
 var app = express();
