@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const db = require("../model/helper");
 var bcrypt = require("bcrypt");
 require("dotenv").config();
+var userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
 const supersecret = process.env.SUPER_SECRET;
 
@@ -33,6 +34,12 @@ router.post("/", async (req, res) => {
   } catch (err) {
     res.status(400).send({ message: err.message });
   }
+});
+
+router.get("/profile", userShouldBeLoggedIn, function (req, res, next) {
+  res.send({
+    message: "Here is the PROTECTED data for user " + req.user_id,
+  });
 });
 
 module.exports = router;
