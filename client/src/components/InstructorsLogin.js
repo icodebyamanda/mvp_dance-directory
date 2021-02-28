@@ -1,28 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import axios from "axios";
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "test",
-      password: "test"
-    };
-  }
+export default function InstructorsLogin(props) {
+  
+  const [instructor, setInstructor] = useState({email: "", password:""}) // hardcode a preexisting instructor to test
+ 
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  const handleChange = (e) => {
+    setInstructor((state) => ({...state, [e.target.name]: e.target.value}));
   };
 
-  login = () => {
-    axios("/users/login", {
-      method: "POST",
-      data: {
-        username: this.state.username,
-        password: this.state.password
-      }
+  const login = () => {
+    axios
+    .post("/users/login", { // change url?
+      data: instructor,
     })
       .then(result => {
         //store it locally
@@ -33,7 +24,7 @@ class Login extends React.Component {
   };
 
   requestData = () => {
-    axios("/users/profile", {
+    axios("/users/profile", { // change url
       method: "GET",
       headers: {
         "x-access-token": localStorage.getItem("token")
@@ -43,39 +34,38 @@ class Login extends React.Component {
       .catch(error => console.log(error));
   };
 
-  render() {
+
     return (
       <div>
         <div>
           <input
-            value={this.state.username}
-            onChange={this.handleChange}
-            name="username"
+            value={state.email}
+            onChange={handleChange}
+            name="email"
             type="text"
             className="form-control mb-2"
           />
           <input
-            value={this.state.password}
-            onChange={this.handleChange}
+            value={state.password}
+            onChange={handleChange}
             name="password"
             type="password"
             className="form-control mb-2"
           />
-          <button className=" btn btn-primary" onClick={this.login}>
+          <button className=" btn btn-primary" onClick={login}>
             Log in
           </button>
         </div>
         <div className="text-center p-4">
           <button
             className=" btn btn-outline-primary"
-            onClick={this.requestData}
+            onClick={requestData}
           >
             Request protected data
           </button>
         </div>
       </div>
     );
-  }
 }
 
-export default Login;
+//  

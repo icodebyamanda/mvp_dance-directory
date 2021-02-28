@@ -10,6 +10,7 @@ import Dancestyles from './components/Dancestyles';
 import Instructors from './components/Instructors';
 import Home from './components/Home';
 import Classes from './components/Classes';
+import InstructorsLogin from './components/InstructorsLogin';
 
 function App() {
 
@@ -52,6 +53,9 @@ function App() {
           <Route path="/instructors">
             <Instructors />
           </Route>
+          <Route path="/login">
+            <InstructorsLogin />
+          </Route>
           <Route path="/">
             <Home />
           </Route>
@@ -63,7 +67,7 @@ function App() {
         <nav>
           <ul>
             <li><Link to="#">Admin Login</Link></li>
-            <li><Link to="#">Instructor Login</Link></li>
+            <li><Link to="/login">Instructor Login</Link></li>
           </ul>
         </nav>
       </div>
