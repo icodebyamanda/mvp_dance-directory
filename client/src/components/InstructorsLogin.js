@@ -22,17 +22,16 @@ export default function InstructorsLogin(props) {
       .catch(error => console.log(error));
   };
 
-  // requestData = () => {
-  //   axios
-  //     .get("/users/profile", { // change url "/users/profile"
-  //     // method: "GET",
-  //     headers: {
-  //       "x-access-token": localStorage.getItem("token")
-  //     }
-  //   })
-  //     .then(result => console.log(result.data.message))
-  //     .catch(error => console.log(error));
-  // };
+  const requestData = () => {
+    axios("/login", {
+      method: "GET",
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    })
+      .then((result) => console.log(result.data.message))
+      .catch((error) => console.log(error));
+  };
 
 
     return (
@@ -59,7 +58,7 @@ export default function InstructorsLogin(props) {
         <div className="text-center p-4">
           <button
             className=" btn btn-outline-primary"
-            // onClick={requestData}
+            onClick={requestData}
           >
             Request protected data
           </button>

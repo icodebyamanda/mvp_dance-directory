@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/profile", userShouldBeLoggedIn, function (req, res, next) {
+router.get("/", userShouldBeLoggedIn, function (req, res, next) {
   //db(`SELECT * from classes WHERE userId = ${req.user_id}`) -> advice from Germinal in real life go back on that about why?
   // db(`SELECT * from instructors WHERE userId = ${req.user_id}`) <- neither do something
   res.send({
