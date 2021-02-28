@@ -12,6 +12,7 @@ import Home from './components/Home';
 import Classes from './components/Classes';
 import InstructorsLogin from './components/InstructorsLogin';
 import RegistrationForm from './components/RegistrationForm';
+import InstructorZone from './components/InstructorZone';
 
 function App() {
 
@@ -70,7 +71,7 @@ function App() {
       <div className="footer">
         <nav>
           <ul>
-            <li><Link to="#">Admin Login</Link></li>
+            <li><Link to="/">Admin Login</Link></li>
             <li><Link to="/login">Instructor Login</Link></li>
             <li><Link to="/registration">Instructor Registration</Link></li>
           </ul>
