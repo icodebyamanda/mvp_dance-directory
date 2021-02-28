@@ -37,20 +37,29 @@ export default function InstructorsLogin(props) {
     return (
       <div>
         <div>
-          <input
-            value={instructor.username}
-            onChange={handleChange}
-            name="username"
-            type="text"
-            className="form-control mb-2"
-          />
-          <input
-            value={instructor.password}
-            onChange={handleChange}
-            name="password"
-            type="password"
-            className="form-control mb-2"
-          />
+
+          <label>
+            <div className="InputLabel"> Email </div>
+            <input
+              value={instructor.username}
+              onChange={handleChange}
+              name="username"
+              type="text"
+              className="form-control mb-2"
+            />
+          </label>
+
+          <label>
+            <div className="InputLabel"> Password </div>
+            <input
+              value={instructor.password}
+              onChange={handleChange}
+              name="password"
+              type="password"
+              className="form-control mb-2"
+            />
+          </label>
+          
           <button className=" btn btn-primary" onClick={login}>
             Log in
           </button>

@@ -4,7 +4,7 @@ export default function RegistrationForm() {
 
   const [newInstructors, setNewInstructors] = useState([]);
   const [name, setName] = useState("");
-  const [intro, setIntro] = useState("");
+  const [introduction, setIntroduction] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [photo, setPhoto] = useState("");
@@ -21,8 +21,8 @@ export default function RegistrationForm() {
     setName(e.target.value);
   }
 
-  function handleIntroChange(e) {
-    setIntro(e.target.value);
+  function handleIntroductionChange(e) {
+    setIntroduction(e.target.value);
   };
 
   function handleEmailChange(e) {
@@ -42,12 +42,12 @@ export default function RegistrationForm() {
  }
 
   const addNewInstructor = () => {
-    fetch("/instructors", {
+    fetch("/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({name, intro, email, password, photo}),
+      body: JSON.stringify({name, introduction, email, password, photo}),
     })
     .then(() => setNewInstructors(newInstructors))
     .catch((error) => { 
@@ -86,9 +86,9 @@ export default function RegistrationForm() {
               <input 
               className="EnteredValues" 
               type="text" 
-              name="intro" 
-              value={intro} 
-              onChange={handleIntroChange}>
+              name="introduction" 
+              value={introduction} 
+              onChange={handleIntroductionChange}>
               </input>
             </label>
 
@@ -135,7 +135,7 @@ export default function RegistrationForm() {
           { newEntryDisplay && (     
             <div>
               <div id="EntryAdded">Thank you for signing up {name} !</div>
-              <div> To start using this directory, please log in here (WIP)</div>
+              <div> To start using this directory, <a href="/Login" target="_blank"> please log in here </a></div>
             </div>
           )}
         </div>
