@@ -11,6 +11,7 @@ import Instructors from './components/Instructors';
 import Home from './components/Home';
 import Classes from './components/Classes';
 import InstructorsLogin from './components/InstructorsLogin';
+import RegistrationForm from './components/RegistrationForm';
 
 function App() {
 
@@ -56,6 +57,9 @@ function App() {
           <Route path="/login">
             <InstructorsLogin />
           </Route>
+          <Route path="/registration">
+            <RegistrationForm />
+          </Route>
           <Route path="/">
             <Home />
           </Route>
@@ -68,6 +72,7 @@ function App() {
           <ul>
             <li><Link to="#">Admin Login</Link></li>
             <li><Link to="/login">Instructor Login</Link></li>
+            <li><Link to="/registration">Instructor Registration</Link></li>
           </ul>
         </nav>
       </div>
