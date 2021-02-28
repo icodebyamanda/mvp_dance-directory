@@ -3,18 +3,17 @@ import axios from "axios";
 
 export default function InstructorsLogin(props) {
   
-  const [instructor, setInstructor] = useState({email: "", password:""}) // hardcode a preexisting instructor to test
+  const [instructor, setInstructor] = useState({username: "", password:""}) // hardcode a preexisting instructor to test
  
 
   const handleChange = (e) => {
+    e.persist();
     setInstructor((state) => ({...state, [e.target.name]: e.target.value}));
   };
 
   const login = () => {
     axios
-    .post("/users/login", { // change url?
-      data: instructor,
-    })
+      .post("/login", instructor) // change url? post("/users/login"
       .then(result => {
         //store it locally
         localStorage.setItem("token", result.data.token);
@@ -23,30 +22,31 @@ export default function InstructorsLogin(props) {
       .catch(error => console.log(error));
   };
 
-  requestData = () => {
-    axios("/users/profile", { // change url
-      method: "GET",
-      headers: {
-        "x-access-token": localStorage.getItem("token")
-      }
-    })
-      .then(result => console.log(result.data.message))
-      .catch(error => console.log(error));
-  };
+  // requestData = () => {
+  //   axios
+  //     .get("/users/profile", { // change url "/users/profile"
+  //     // method: "GET",
+  //     headers: {
+  //       "x-access-token": localStorage.getItem("token")
+  //     }
+  //   })
+  //     .then(result => console.log(result.data.message))
+  //     .catch(error => console.log(error));
+  // };
 
 
     return (
       <div>
         <div>
           <input
-            value={state.email}
+            value={instructor.username}
             onChange={handleChange}
-            name="email"
+            name="username"
             type="text"
             className="form-control mb-2"
           />
           <input
-            value={state.password}
+            value={instructor.password}
             onChange={handleChange}
             name="password"
             type="password"
@@ -59,7 +59,7 @@ export default function InstructorsLogin(props) {
         <div className="text-center p-4">
           <button
             className=" btn btn-outline-primary"
-            onClick={requestData}
+            // onClick={requestData}
           >
             Request protected data
           </button>
