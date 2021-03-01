@@ -1,5 +1,46 @@
 ### mvp_dance-directory
 
+## Feature added:
+
+### Database:
+
+- A password's column addition
+- email address was the data selected as a login's username
+
+### Instructor's login:
+
+- A frontend form
+- ... which is accessible on the webapp (instructor login route updated)
+- ... which is connected to a newly created login endpoint
+- ... This endpoint is connected to the instructor's database
+- ... Data entered into the form are matched against the database and multiple scenari have been implemented and tested (i.e. incorrect username, incorrect password)
+- Password has been encrypted from authentication to authorisation and tested
+
+### Instructor's registration:
+
+- A frontend form
+- ... which is accessible on the webapp (route created)
+- ... which is connected to a newly created registration endpoint
+- ... This endpoint is connected to the instructor's database
+- ... Any new registration is sent to the database and can be reused for login
+- When the form is filled up and submitted, a message appears with a link to the login page
+
+### Bug fixing
+
+- Frontend: Admin login and Instructor login do not send anymore to the same url page
+
+### Also:
+
+- Extra data are available to perform tests
+
+{"name": "Sam", "introduction": "Sam's Intro", "email": "sam@gmail.com", "password":"sammy", "photo": "/sam_350x350.jpg"}
+
+{"name": "Monika", "introduction": "Monika's Intro", "email": "monika@gmail.com", "password":"monny", "photo": "/monika_350x350.jpg"}
+
+{"name": "Tony", "introduction": "STony's Intro", "email": "tony@gmail.com ", "password":"tonytony", "photo": "/tony_350x350.jpg"}
+
+## Project's About
+
 This projects is a work in progress and forms part of the CodeOp Full Stack Development bootcamp curriculum. It constitutes the first of three projects and the goal is to produce an MVP of the student's choice.
 
 The aim of this project is to create a centralised directory of dance classes for a certain location. Dance classes are organised by different teachers and schools and usually all communication happens via various Facebook groups. This can quickly get overwhelming for students as they need to spend a long time searching Facebook for suitable classes. Once they have identified them, they will need to join multiple groups and follow their communication threads in order to not to miss a change of location or a cancellation, for example. Furthermore - and this is especially true for the more classical dance styles like Ballroom dancing - a lot of participants tend to be older and don't usually use Facebook. So it is easy for them to miss out on updates or special events orgaised on social media.
