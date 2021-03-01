@@ -2,7 +2,7 @@
 
 ## Feature added:
 
-### Database:
+### Instructor's Database:
 
 - A password's column addition
 - email address was the data selected as a login's username
@@ -14,7 +14,7 @@
 - ... which is connected to a newly created login endpoint
 - ... This endpoint is connected to the instructor's database
 - ... Data entered into the form are matched against the database and multiple scenari have been implemented and tested (i.e. incorrect username, incorrect password)
-- Password has been encrypted from authentication to authorisation and tested
+- Password is encrypted, and a process of authentication and authorisation has been implemented and tested
 
 ### Instructor's registration:
 
@@ -24,6 +24,7 @@
 - ... This endpoint is connected to the instructor's database
 - ... Any new registration is sent to the database and can be reused for login
 - When the form is filled up and submitted, a message appears with a link to the login page
+- Password is encrypted, and a process of authentication and authorisation has been implemented and tested
 
 ### Bug fixing
 
@@ -33,13 +34,21 @@
 
 - A middleware was created (to be found in the guard folder) to check the user's token
 
+- ReadMe Updated
+
 - Extra data are available to perform tests
 
 {"name": "Sam", "introduction": "Sam's Intro", "email": "sam@gmail.com", "password":"sammy", "photo": "/sam_350x350.jpg"}
 
 {"name": "Monika", "introduction": "Monika's Intro", "email": "monika@gmail.com", "password":"monny", "photo": "/monika_350x350.jpg"}
 
-{"name": "Tony", "introduction": "STony's Intro", "email": "tony@gmail.com ", "password":"tonytony", "photo": "/tony_350x350.jpg"}
+{"name": "Steph", "introduction": "Steph's Intro", "email": "steph@gmail.com ", "password":"stephsteph", "photo": "/steph_350x350.jpg"}
+
+{"name": "Tony", "introduction": "Tony's Intro", "email": "tony@gmail.com ", "password":"tonytony", "photo": "/tony_350x350.jpg"}
+
+### Unfinished:
+
+- InstructorZone.js: Private space where the instructor would be redirected after loging in
 
 ## Project's About
 
@@ -72,15 +81,6 @@ The most complex endpoint is the GET endpoint in the classes router. It can retu
 
 ## Sample Data for dance_styles:
 
-### Ready to insert data
-
-INSERT INTO dance_styles(name, video_url, description, image) VALUES
-("Bachata", "Bachata description", "https://www.youtube.com/embed/sBhWxgOLRwo", "Bachata_350x350.jpg"),
-("Ballet", "Ballet description", "https://www.youtube.com/embed/3TLSrI_hXEw", "Ballet_350x350.jpg"),
-("Ballroom", "Ballroom description", "https://www.youtube.com/embed/Ti_YU-vsG34", "Ballroom_350x350.jpg"),
-("Salsa", "Salsa description", "https://www.youtube.com/embed/tBEc9Kni6I0", "Salsa_350x350.jpg"),
-("Tango", "Tango description", "https://www.youtube.com/embed/7uA3mwfadAM", "Tango_350x350.jpg");
-
 ### Raw data
 
 ("name": "Bachata", "description" : "Bachata description", "video_url" : "https://www.youtube.com/embed/sBhWxgOLRwo", "image": "Bachata_350x350.jpg"),
@@ -91,7 +91,7 @@ INSERT INTO dance_styles(name, video_url, description, image) VALUES
 
 ## Sample Data for instructors:
 
-### Ready to insert data
+### Mysql ready to insert data
 
 INSERT INTO instructors(name, introduction, email, photo) VALUES
 ("John", "John's Intro", "John@gmail.com", "/john_350x350.jpg"),

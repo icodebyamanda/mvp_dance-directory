@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function InstructorsLogin(props) {
   
-  const [instructor, setInstructor] = useState({username: "", password:""}) // hardcode a preexisting instructor to test
+  const [instructor, setInstructor] = useState({username: "", password:""}) 
  
 
   const handleChange = (e) => {
@@ -13,7 +13,7 @@ export default function InstructorsLogin(props) {
 
   const login = () => {
     axios
-      .post("/login", instructor) // change url? post("/users/login"
+      .post("/login", instructor) 
       .then(result => {
         //store it locally
         localStorage.setItem("token", result.data.token);
