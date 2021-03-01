@@ -31,6 +31,8 @@
 
 ### Also:
 
+- A middleware was created (to be found in the guard folder) to check the user's token
+
 - Extra data are available to perform tests
 
 {"name": "Sam", "introduction": "Sam's Intro", "email": "sam@gmail.com", "password":"sammy", "photo": "/sam_350x350.jpg"}
